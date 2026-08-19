@@ -37,6 +37,31 @@ KEMRI was central to the development of the **RTS,S malaria vaccine** (Mosquirix
 
 ---
 
+## 📈 Key Visuals
+
+### Malaria Incidence Trend (2000–2024)
+![Malaria Trend](docs/images/malaria_trend.png)
+
+### Climate Drivers of Malaria
+![Climate Correlation](docs/images/climate_correlation.png)
+
+### East Africa Regional Comparison
+![Regional Comparison](docs/images/east_africa_comparison.png)
+
+### ML Model Predictions vs Actual
+![Model Predictions](docs/images/model_predictions.png)
+
+### What Drives Malaria Risk?
+![Feature Importance](docs/images/feature_importance.png)
+
+### Climate Anomaly Patterns
+![Climate Heatmap](docs/images/climate_heatmap.png)
+
+### System Architecture
+![Architecture](docs/images/architecture.png)
+
+---
+
 ## 📊 Data Sources
 
 All data is **publicly available** and sourced from authoritative institutions:
