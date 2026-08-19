@@ -1,0 +1,125 @@
+{
+  "trained_at": "2026-08-19T10:41:04.533920",
+  "best_model": "Random Forest",
+  "n_features": 20,
+  "features": [
+    "incidence_lag1",
+    "incidence_lag2",
+    "incidence_change",
+    "precip_total_mm",
+    "precip_days",
+    "precip_anomaly",
+    "temp_mean_c",
+    "temp_max_c",
+    "temp_anomaly",
+    "humidity_mean",
+    "wind_mean_ms",
+    "solar_mean_mj",
+    "precip_lag1",
+    "precip_lag2",
+    "temp_lag1",
+    "temp_lag2",
+    "population_total",
+    "urban_population_pct",
+    "health_expenditure_pct_gdp",
+    "agricultural_precipitation_mm"
+  ],
+  "train_years": "2001-2019",
+  "test_years": "2020-2024",
+  "n_train": 19,
+  "n_test": 5,
+  "results": [
+    {
+      "name": "Ridge Regression",
+      "train_mae": 2.2858727655863182,
+      "train_rmse": 3.2177732155449807,
+      "train_r2": 0.9967882051196929,
+      "test_mae": 7.383374614189845,
+      "test_rmse": 8.189148567004434,
+      "test_r2": -0.9169562757197405,
+      "test_mape": 9.254726508720326
+    },
+    {
+      "name": "Random Forest",
+      "train_mae": 7.67156150375941,
+      "train_rmse": 12.42944176491565,
+      "train_r2": 0.9520774207079197,
+      "test_mae": 5.103859571428569,
+      "test_rmse": 5.356235599620248,
+      "test_r2": 0.1799240983265994,
+      "test_mape": 6.340620026963243
+    },
+    {
+      "name": "Gradient Boosting",
+      "train_mae": 0.06187292723590444,
+      "train_rmse": 0.09691577371162098,
+      "train_r2": 0.9999970864272186,
+      "test_mae": 5.132750161994966,
+      "test_rmse": 5.422943583971082,
+      "test_r2": 0.15937001010148255,
+      "test_mape": 6.246395531035585
+    },
+    {
+      "name": "XGBoost",
+      "train_mae": 0.11779404489617432,
+      "train_rmse": 0.2008319997536383,
+      "train_r2": 0.9999874886906558,
+      "test_mae": 4.933306091308594,
+      "test_rmse": 5.565802426986245,
+      "test_r2": 0.11449650739139339,
+      "test_mape": 6.021393306063507
+    }
+  ],
+  "best_metrics": {
+    "name": "Random Forest",
+    "train_mae": 7.67156150375941,
+    "train_rmse": 12.42944176491565,
+    "train_r2": 0.9520774207079197,
+    "test_mae": 5.103859571428569,
+    "test_rmse": 5.356235599620248,
+    "test_r2": 0.1799240983265994,
+    "test_mape": 6.340620026963243
+  },
+  "feature_importance": [
+    {
+      "feature": "incidence_lag1",
+      "importance": 0.41067392980314354
+    },
+    {
+      "feature": "urban_population_pct",
+      "importance": 0.22615805743690484
+    },
+    {
+      "feature": "population_total",
+      "importance": 0.20954569013117172
+    },
+    {
+      "feature": "incidence_lag2",
+      "importance": 0.10698884991991893
+    },
+    {
+      "feature": "health_expenditure_pct_gdp",
+      "importance": 0.03995210518105416
+    },
+    {
+      "feature": "incidence_change",
+      "importance": 0.004108049517592197
+    },
+    {
+      "feature": "temp_lag2",
+      "importance": 0.0013711629927844558
+    },
+    {
+      "feature": "temp_lag1",
+      "importance": 0.00027093460935912557
+    },
+    {
+      "feature": "precip_anomaly",
+      "importance": 0.0002136904391531351
+    },
+    {
+      "feature": "precip_total_mm",
+      "importance": 0.0001417527369515596
+    }
+  ]
+}

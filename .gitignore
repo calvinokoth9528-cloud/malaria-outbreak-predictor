@@ -1,0 +1,48 @@
+# ── R ──────────────────────────────────────────────
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+
+# ── Python ─────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+venv/
+.venv/
+env/
+
+# ── Data (keep processed, ignore large raw files) ──
+data/raw/kenya_climate_daily.csv  # 43K rows — fetch fresh via scripts
+# data/raw/*.csv                  # Uncomment to ignore all raw data
+data/processed/*.csv              # Keep processed data in repo
+
+# ── Models ──
+models/serialized/*.pkl
+models/serialized/*.joblib
+models/serialized/*.rds
+
+# ── IDE / Editor ──
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ── Docker ──
+docker/.env
+
+# ── OS ──
+.DS_Store
+Desktop.ini
+
+# ── Freebuff IDE (do not commit) ──
+.freebuff/

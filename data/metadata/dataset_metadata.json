@@ -1,0 +1,63 @@
+{
+  "project": "Malaria Outbreak Predictor",
+  "fetched_at": "2026-08-19T10:09:38.917241",
+  "datasets": {
+    "worldbank_malaria_indicators.csv": {
+      "source": "World Bank Open Data API",
+      "url": "https://data.worldbank.org/",
+      "license": "Creative Commons Attribution 4.0 (CC BY 4.0)",
+      "description": "Malaria incidence, mortality, and related health/climate indicators for Kenya",
+      "indicators": [
+        "SH.MLR.INCD.P3 - Malaria incidence per 1000 at risk",
+        "SH.MLR.INCD - Malaria incidence (total cases)",
+        "SH.MLR.MORT - Malaria mortality rate",
+        "SH.MLR.DTHS - Malaria deaths",
+        "EN.ATM.PREC.MM - Annual precipitation",
+        "EN.ATM.FTEMP.ZD - Temperature anomaly",
+        "SH.XPD.CHEX.GD.ZS - Health expenditure % GDP",
+        "SP.POP.TOTL - Total population"
+      ],
+      "temporal_coverage": "2000-2024",
+      "spatial_coverage": "Kenya + East Africa comparison"
+    },
+    "who_malaria_surveillance.csv": {
+      "source": "WHO Global Health Observatory (GHO) API",
+      "url": "https://ghoapi.azureedge.net/",
+      "license": "Open access - WHO",
+      "description": "WHO estimated malaria cases, deaths, and intervention data for Kenya",
+      "indicators": [
+        "Estimated incidence per 1000 population at risk",
+        "Estimated number of malaria cases",
+        "Estimated number of malaria deaths",
+        "Confirmed malaria cases",
+        "Rapid diagnostic tests performed",
+        "Artemisinin-based combination therapy treatments"
+      ],
+      "temporal_coverage": "2000-2023",
+      "spatial_coverage": "Kenya"
+    },
+    "kenya_climate_daily.csv": {
+      "source": "NASA POWER API (Prediction Of Worldwide Energy Resources)",
+      "url": "https://power.larc.nasa.gov/",
+      "license": "Public domain (NASA)",
+      "description": "Daily climate data (temperature, precipitation, humidity, wind, solar radiation) for 8 cities in Kenya",
+      "parameters": [
+        "T2M - Temperature at 2 meters (\u00b0C)",
+        "PRECTOTCORR - Precipitation (mm/day)",
+        "RH2M - Relative Humidity at 2 meters (%)",
+        "WS2M - Wind Speed at 2 meters (m/s)",
+        "ALLSKY_SFC_SW_DWN - Solar Radiation (MJ/m\u00b2/day)"
+      ],
+      "temporal_coverage": "2010-2024",
+      "spatial_coverage": "8 cities across Kenya (Nairobi, Mombasa, Kisumu, Nakuru, Eldoret, Garissa, Kakamega, Machakos)"
+    }
+  },
+  "usage_notes": [
+    "All datasets are publicly available and free to use",
+    "World Bank data is under CC BY 4.0 license",
+    "WHO data is open access",
+    "NASA POWER data is public domain",
+    "For commercial use, verify individual dataset licenses",
+    "Cite original sources in any publications"
+  ]
+}
