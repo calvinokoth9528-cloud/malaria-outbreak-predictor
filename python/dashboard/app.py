@@ -355,8 +355,14 @@ def page_predictions(data):
     """ML predictions page."""
     st.markdown('<p class="main-header">🤖 ML Predictions</p>', unsafe_allow_html=True)
 
-    model_info = load_model_info()
-    preds = data.get("predictions", pd.DataFrame())
+    # Try prediction machine report first
+    pm_path = os.path.join(MODEL_DIR, "prediction_machine", "training_report.json")
+    model_info = {}
+    if os.path.exists(pm_path):
+        with open(pm_path) as f:
+            model_info = json.load(f)
+    else:
+        model_info = load_model_info()
 
     if not model_info:
         st.warning("No model info available. Run training first.")
@@ -378,35 +384,48 @@ def page_predictions(data):
 
     st.divider()
 
-    # Predictions vs Actual
-    st.subheader("📈 Predictions vs Actual")
-    if not preds.empty:
-        train = preds[preds["model"].str.contains("train", na=False)]
-        test = preds[~preds["model"].str.contains("train", na=False)]
+    # Model comparison
+    st.subheader("📊 Model Comparison")
+    results = model_info.get("results", [])
+    if results:
+        comp_df = pd.DataFrame(results)
+        comp_df = comp_df.sort_values("test_mae")
+        fig = px.bar(
+            comp_df, x="name", y="test_mae",
+            color="test_r2", color_continuous_scale="RdYlGn",
+            labels={"test_mae": "Mean Absolute Error", "name": "Model", "test_r2": "R² Score"},
+        )
+        fig.update_layout(height=350, plot_bgcolor="white")
+        st.plotly_chart(fig, use_container_width=True)
 
+    # Forecasts
+    st.subheader("🔮 Future Predictions (5-Year Forecast)")
+    forecasts = model_info.get("forecasts", [])
+    if forecasts:
+        fc_df = pd.DataFrame(forecasts)
         fig = go.Figure()
         fig.add_trace(go.Scatter(
-            x=train["year"], y=train["malaria_incidence_per_1000"],
-            mode="markers+lines", name="Actual (train)",
-            line=dict(color="#3498db"), marker=dict(size=6),
+            x=fc_df["year"], y=fc_df["predicted_incidence"],
+            mode="markers+lines+text", name="Forecast",
+            line=dict(color="#e74c3c", width=3),
+            marker=dict(size=10),
+            text=[f"{v:.1f}" for v in fc_df["predicted_incidence"]],
+            textposition="top center",
         ))
-        fig.add_trace(go.Scatter(
-            x=train["year"], y=train["predicted"],
-            mode="markers+lines", name="Predicted (train)",
-            line=dict(color="#3498db", dash="dash"), marker=dict(size=6),
-        ))
-        fig.add_trace(go.Scatter(
-            x=test["year"], y=test["malaria_incidence_per_1000"],
-            mode="markers+lines", name="Actual (test)",
-            line=dict(color="#e74c3c"), marker=dict(size=8),
-        ))
-        fig.add_trace(go.Scatter(
-            x=test["year"], y=test["predicted"],
-            mode="markers+lines", name="Predicted (test)",
-            line=dict(color="#e74c3c", dash="dash"), marker=dict(size=8),
-        ))
-        fig.update_layout(height=450, plot_bgcolor="white", title="Model Predictions")
+        # Confidence interval
+        if "lower_bound" in fc_df.columns:
+            fig.add_trace(go.Scatter(
+                x=pd.concat([fc_df["year"], fc_df["year"].iloc[::-1]]),
+                y=pd.concat([fc_df["upper_bound"], fc_df["lower_bound"].iloc[::-1]]),
+                fill="toself", fillcolor="rgba(231,76,60,0.15)",
+                line=dict(color="rgba(255,255,255,0)"),
+                name="95% Confidence",
+            ))
+        fig.update_layout(height=400, plot_bgcolor="white", title="Malaria Incidence Forecast")
         st.plotly_chart(fig, use_container_width=True)
+
+        # Forecast table
+        st.dataframe(fc_df, use_container_width=True)
 
     # Feature importance
     st.subheader("🔍 Feature Importance")

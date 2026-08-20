@@ -1,0 +1,269 @@
+{
+  "trained_at": "2026-08-20T09:17:54.415630",
+  "best_model": "Weighted Ensemble",
+  "n_features": 51,
+  "features": [
+    "temp_mean_c",
+    "precip_total_mm",
+    "precip_days",
+    "humidity_mean",
+    "wind_mean_ms",
+    "solar_mean_mj",
+    "estimated_incidence_per_1000_at_risk",
+    "estimated_malaria_cases",
+    "estimated_malaria_deaths",
+    "agricultural_precipitation_mm",
+    "health_expenditure_pct_gdp",
+    "population_total",
+    "incidence_lag_1m",
+    "incidence_lag_3m",
+    "incidence_lag_6m",
+    "precip_total_mm_lag1m",
+    "precip_total_mm_lag2m",
+    "precip_total_mm_lag3m",
+    "precip_total_mm_lag6m",
+    "precip_total_mm_lag12m",
+    "temp_mean_c_lag1m",
+    "temp_mean_c_lag2m",
+    "temp_mean_c_lag3m",
+    "temp_mean_c_lag6m",
+    "temp_mean_c_lag12m",
+    "humidity_mean_lag1m",
+    "humidity_mean_lag2m",
+    "humidity_mean_lag3m",
+    "humidity_mean_lag6m",
+    "humidity_mean_lag12m",
+    "precip_total_mm_roll3",
+    "precip_total_mm_roll6",
+    "precip_total_mm_roll12",
+    "precip_total_mm_std3",
+    "precip_total_mm_std6",
+    "temp_mean_c_roll3",
+    "temp_mean_c_roll6",
+    "temp_mean_c_roll12",
+    "temp_mean_c_std3",
+    "temp_mean_c_std6",
+    "humidity_mean_roll3",
+    "humidity_mean_roll6",
+    "humidity_mean_roll12",
+    "humidity_mean_std3",
+    "humidity_mean_std6",
+    "month_sin",
+    "month_cos",
+    "is_rainy_season",
+    "precip_anomaly",
+    "precip_anomaly_pct",
+    "humidity_x_temp"
+  ],
+  "train_samples": 1068,
+  "test_samples": 480,
+  "results": [
+    {
+      "name": "Ridge",
+      "best_params": {
+        "alpha": 10.0
+      },
+      "cv_mae": 0.9585195178178267,
+      "train_mae": 0.8381306577185086,
+      "train_rmse": 1.2603020588495284,
+      "train_r2": 0.8873638113625827,
+      "test_mae": 0.7445619278546637,
+      "test_rmse": 0.9539975401229749,
+      "test_r2": 0.8526948575420661,
+      "test_mape": 12.562556874884187
+    },
+    {
+      "name": "Random Forest",
+      "best_params": {
+        "max_depth": 10,
+        "min_samples_leaf": 3,
+        "n_estimators": 150
+      },
+      "cv_mae": 0.36160171564980964,
+      "train_mae": 0.16355436377444707,
+      "train_rmse": 0.5319037722824373,
+      "train_r2": 0.979937049772781,
+      "test_mae": 0.17110314224523868,
+      "test_rmse": 0.30664299433996556,
+      "test_r2": 0.9847808816991745,
+      "test_mape": 2.5728469531175113
+    },
+    {
+      "name": "Gradient Boosting",
+      "best_params": {
+        "learning_rate": 0.1,
+        "max_depth": 5,
+        "n_estimators": 150
+      },
+      "cv_mae": 0.2980850205959292,
+      "train_mae": 0.020982451167596006,
+      "train_rmse": 0.030313537661700102,
+      "train_r2": 0.9999348368755034,
+      "test_mae": 0.16896905554337302,
+      "test_rmse": 0.2938178117556503,
+      "test_r2": 0.9860273223953285,
+      "test_mape": 2.6322493914605123
+    },
+    {
+      "name": "Extra Trees",
+      "best_params": {
+        "max_depth": null,
+        "n_estimators": 100
+      },
+      "cv_mae": 0.4127406122333775,
+      "train_mae": 9.49303058134544e-15,
+      "train_rmse": 1.2025777681874636e-14,
+      "train_r2": 1.0,
+      "test_mae": 0.4796194669076993,
+      "test_rmse": 0.52761062721755,
+      "test_r2": 0.9549442246360711,
+      "test_mape": 8.008848877796133
+    },
+    {
+      "name": "XGBoost",
+      "best_params": {
+        "learning_rate": 0.1,
+        "max_depth": 5,
+        "n_estimators": 150
+      },
+      "cv_mae": 0.3164609968213094,
+      "train_mae": 0.03149655273496947,
+      "train_rmse": 0.05090069633423607,
+      "train_r2": 0.9998162716806818,
+      "test_mae": 0.14578867864098485,
+      "test_rmse": 0.24052504206551764,
+      "test_r2": 0.9906363753292204,
+      "test_mape": 2.2067866974846284
+    },
+    {
+      "name": "Weighted Ensemble",
+      "test_mae": 0.14169062131017612,
+      "test_rmse": 0.24522777390911044,
+      "test_r2": 0.9902666417108602,
+      "test_mape": 2.2089400001434267
+    },
+    {
+      "name": "Stacking Ensemble",
+      "train_mae": 0.7778506213170673,
+      "train_rmse": 1.1876410350131112,
+      "train_r2": 0.8999771915368647,
+      "test_mae": 0.6711073361005951,
+      "test_rmse": 0.8474262907953274,
+      "test_r2": 0.8837675838244115,
+      "test_mape": 11.572298326063752
+    }
+  ],
+  "best_metrics": {
+    "name": "Weighted Ensemble",
+    "test_mae": 0.14169062131017612,
+    "test_rmse": 0.24522777390911044,
+    "test_r2": 0.9902666417108602,
+    "test_mape": 2.2089400001434267
+  },
+  "ensemble_weights": {
+    "Ridge": 0.06091061007022131,
+    "Random Forest": 0.26505367769703864,
+    "Gradient Boosting": 0.2684012976468269,
+    "Extra Trees": 0.09455764568117457,
+    "XGBoost": 0.31107676890473857
+  },
+  "feature_importance": [
+    {
+      "feature": "incidence_lag_1m",
+      "importance": 0.47568965666864266
+    },
+    {
+      "feature": "incidence_lag_6m",
+      "importance": 0.4318499197988118
+    },
+    {
+      "feature": "month_cos",
+      "importance": 0.03635775777243426
+    },
+    {
+      "feature": "month_sin",
+      "importance": 0.01819732579537416
+    },
+    {
+      "feature": "is_rainy_season",
+      "importance": 0.008643581517923436
+    },
+    {
+      "feature": "temp_mean_c_roll3",
+      "importance": 0.007976013239273645
+    },
+    {
+      "feature": "temp_mean_c_lag1m",
+      "importance": 0.005554476678629766
+    },
+    {
+      "feature": "incidence_lag_3m",
+      "importance": 0.0028568903016054103
+    },
+    {
+      "feature": "estimated_incidence_per_1000_at_risk",
+      "importance": 0.002596661594706489
+    },
+    {
+      "feature": "population_total",
+      "importance": 0.0019674112937029704
+    },
+    {
+      "feature": "estimated_malaria_deaths",
+      "importance": 0.0014794405826206577
+    },
+    {
+      "feature": "health_expenditure_pct_gdp",
+      "importance": 0.0012185542505147658
+    },
+    {
+      "feature": "estimated_malaria_cases",
+      "importance": 0.0007093903695017992
+    },
+    {
+      "feature": "temp_mean_c_roll12",
+      "importance": 0.00063550764054001
+    },
+    {
+      "feature": "precip_anomaly",
+      "importance": 0.0004436821043162601
+    }
+  ],
+  "forecasts": [
+    {
+      "year": 2025,
+      "predicted_incidence": 5.44,
+      "lower_bound": 3.84,
+      "upper_bound": 7.03,
+      "confidence": "95%"
+    },
+    {
+      "year": 2026,
+      "predicted_incidence": 5.43,
+      "lower_bound": 3.84,
+      "upper_bound": 7.03,
+      "confidence": "95%"
+    },
+    {
+      "year": 2027,
+      "predicted_incidence": 5.42,
+      "lower_bound": 3.83,
+      "upper_bound": 7.02,
+      "confidence": "95%"
+    },
+    {
+      "year": 2028,
+      "predicted_incidence": 5.42,
+      "lower_bound": 3.83,
+      "upper_bound": 7.02,
+      "confidence": "95%"
+    },
+    {
+      "year": 2029,
+      "predicted_incidence": 5.43,
+      "lower_bound": 3.84,
+      "upper_bound": 7.03,
+      "confidence": "95%"
+    }
+  ]
+}

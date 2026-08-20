@@ -19,8 +19,11 @@ import sys
 from datetime import datetime
 from typing import Optional
 
-if sys.platform == "win32":
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+if sys.platform == "win32" and hasattr(sys.stdout, 'buffer') and not hasattr(sys.stdout, '_pytest_capture'):
+    try:
+        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+    except Exception:
+        pass
 
 import numpy as np
 import joblib
@@ -36,15 +39,25 @@ DATA_DIR = os.path.join(BASE_DIR, "data", "processed")
 
 # ── Load Model Artifacts ───────────────────────────────────────────────────────
 
+PM_DIR = os.path.join(BASE_DIR, "models", "serialized", "prediction_machine")
+
 def load_artifacts():
     """Load trained model, scaler, and feature names."""
-    model_path = os.path.join(MODEL_DIR, "model_final.joblib")
-    scaler_path = os.path.join(MODEL_DIR, "scaler_final.joblib")
-    features_path = os.path.join(MODEL_DIR, "feature_names.joblib")
-    report_path = os.path.join(MODEL_DIR, "training_report.json")
+    # Try prediction machine first, fall back to basic model
+    model_path = os.path.join(PM_DIR, "ensemble_model.joblib")
+    scaler_path = os.path.join(PM_DIR, "ensemble_scaler.joblib")
+    features_path = os.path.join(PM_DIR, "feature_names.joblib")
+    report_path = os.path.join(PM_DIR, "training_report.json")
 
     if not all(os.path.exists(p) for p in [model_path, scaler_path, features_path]):
-        raise RuntimeError("Model artifacts not found. Run python/ml/train_model.py first.")
+        # Fall back to basic model
+        model_path = os.path.join(MODEL_DIR, "model_final.joblib")
+        scaler_path = os.path.join(MODEL_DIR, "scaler_final.joblib")
+        features_path = os.path.join(MODEL_DIR, "feature_names.joblib")
+        report_path = os.path.join(MODEL_DIR, "training_report.json")
+
+    if not all(os.path.exists(p) for p in [model_path, scaler_path, features_path]):
+        raise RuntimeError("Model artifacts not found. Run training first.")
 
     model = joblib.load(model_path)
     scaler = joblib.load(scaler_path)
@@ -289,6 +302,39 @@ def get_cities():
         {"name": "Machakos", "lat": -1.52, "lon": 37.26, "zone": "Eastern"},
     ]
     return {"cities": cities, "country": "Kenya"}
+
+
+@app.get("/forecast")
+def get_forecast(years: int = 5):
+    """Forecast malaria incidence for future years."""
+    # Load forecast data from prediction machine report
+    pm_report_path = os.path.join(PM_DIR, "training_report.json")
+    if os.path.exists(pm_report_path):
+        with open(pm_report_path) as f:
+            pm_report = json.load(f)
+        forecasts = pm_report.get("forecasts", [])
+        return {
+            "forecasts": forecasts[:years],
+            "model": pm_report.get("best_model", "Unknown"),
+            "note": "Predictions based on ensemble of XGBoost, Gradient Boosting, Random Forest, Extra Trees, and Ridge models",
+        }
+    else:
+        return {"forecasts": [], "note": "Run prediction machine first"}
+
+
+@app.get("/model/compare")
+def compare_models():
+    """Compare all trained models."""
+    pm_report_path = os.path.join(PM_DIR, "training_report.json")
+    if os.path.exists(pm_report_path):
+        with open(pm_report_path) as f:
+            pm_report = json.load(f)
+        return {
+            "models": pm_report.get("results", []),
+            "best_model": pm_report.get("best_model", "Unknown"),
+            "ensemble_weights": pm_report.get("ensemble_weights", {}),
+        }
+    return {"models": [], "note": "Run prediction machine first"}
 
 
 # ── Run ────────────────────────────────────────────────────────────────────────
