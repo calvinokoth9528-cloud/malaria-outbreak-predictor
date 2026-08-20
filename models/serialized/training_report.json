@@ -1,5 +1,5 @@
 {
-  "trained_at": "2026-08-19T10:41:04.533920",
+  "trained_at": "2026-08-20T08:59:59.677762",
   "best_model": "Random Forest",
   "n_features": 20,
   "features": [
@@ -31,33 +31,33 @@
   "results": [
     {
       "name": "Ridge Regression",
-      "train_mae": 2.2858727655863182,
-      "train_rmse": 3.2177732155449807,
-      "train_r2": 0.9967882051196929,
-      "test_mae": 7.383374614189845,
-      "test_rmse": 8.189148567004434,
-      "test_r2": -0.9169562757197405,
-      "test_mape": 9.254726508720326
+      "train_mae": 2.1309461145126902,
+      "train_rmse": 3.1557674892995027,
+      "train_r2": 0.996910793554249,
+      "test_mae": 6.407174654211309,
+      "test_rmse": 7.005535308479018,
+      "test_r2": -0.40286977825839565,
+      "test_mape": 7.8635430934376
     },
     {
       "name": "Random Forest",
-      "train_mae": 7.67156150375941,
-      "train_rmse": 12.42944176491565,
-      "train_r2": 0.9520774207079197,
-      "test_mae": 5.103859571428569,
-      "test_rmse": 5.356235599620248,
-      "test_r2": 0.1799240983265994,
-      "test_mape": 6.340620026963243
+      "train_mae": 7.670772644110288,
+      "train_rmse": 12.429069430328553,
+      "train_r2": 0.9520802917888349,
+      "test_mae": 5.085604571428573,
+      "test_rmse": 5.35681368771258,
+      "test_r2": 0.179747070379339,
+      "test_mape": 6.306952414849243
     },
     {
       "name": "Gradient Boosting",
-      "train_mae": 0.06187292723590444,
-      "train_rmse": 0.09691577371162098,
-      "train_r2": 0.9999970864272186,
-      "test_mae": 5.132750161994966,
-      "test_rmse": 5.422943583971082,
-      "test_r2": 0.15937001010148255,
-      "test_mape": 6.246395531035585
+      "train_mae": 0.05983573301773878,
+      "train_rmse": 0.09476325664780877,
+      "train_r2": 0.9999972144119448,
+      "test_mae": 5.139368468857077,
+      "test_rmse": 5.429368145814768,
+      "test_r2": 0.15737704138742903,
+      "test_mape": 6.255546016360207
     },
     {
       "name": "XGBoost",
@@ -72,54 +72,54 @@
   ],
   "best_metrics": {
     "name": "Random Forest",
-    "train_mae": 7.67156150375941,
-    "train_rmse": 12.42944176491565,
-    "train_r2": 0.9520774207079197,
-    "test_mae": 5.103859571428569,
-    "test_rmse": 5.356235599620248,
-    "test_r2": 0.1799240983265994,
-    "test_mape": 6.340620026963243
+    "train_mae": 7.670772644110288,
+    "train_rmse": 12.429069430328553,
+    "train_r2": 0.9520802917888349,
+    "test_mae": 5.085604571428573,
+    "test_rmse": 5.35681368771258,
+    "test_r2": 0.179747070379339,
+    "test_mape": 6.306952414849243
   },
   "feature_importance": [
     {
       "feature": "incidence_lag1",
-      "importance": 0.41067392980314354
+      "importance": 0.4109233519956274
     },
     {
       "feature": "urban_population_pct",
-      "importance": 0.22615805743690484
+      "importance": 0.22476125099210653
     },
     {
       "feature": "population_total",
-      "importance": 0.20954569013117172
+      "importance": 0.2092402461937598
     },
     {
       "feature": "incidence_lag2",
-      "importance": 0.10698884991991893
+      "importance": 0.10837929982918255
     },
     {
       "feature": "health_expenditure_pct_gdp",
-      "importance": 0.03995210518105416
+      "importance": 0.040020045965214655
     },
     {
       "feature": "incidence_change",
-      "importance": 0.004108049517592197
+      "importance": 0.004104000634194156
     },
     {
       "feature": "temp_lag2",
-      "importance": 0.0013711629927844558
+      "importance": 0.0013412452390049266
     },
     {
       "feature": "temp_lag1",
-      "importance": 0.00027093460935912557
-    },
-    {
-      "feature": "precip_anomaly",
-      "importance": 0.0002136904391531351
+      "importance": 0.0002905342808557287
     },
     {
       "feature": "precip_total_mm",
-      "importance": 0.0001417527369515596
+      "importance": 0.0002399337132671279
+    },
+    {
+      "feature": "precip_anomaly",
+      "importance": 0.0001271039353749971
     }
   ]
 }

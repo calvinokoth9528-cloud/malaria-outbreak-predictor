@@ -23,10 +23,11 @@ data/raw/kenya_climate_daily.csv  # 43K rows — fetch fresh via scripts
 # data/raw/*.csv                  # Uncomment to ignore all raw data
 data/processed/*.csv              # Keep processed data in repo
 
-# ── Models ──
+# ── Models (large — fetch fresh via training script) ──
 models/serialized/*.pkl
 models/serialized/*.joblib
 models/serialized/*.rds
+models/serialized/*.json
 
 # ── IDE / Editor ──
 .vscode/
@@ -43,6 +44,14 @@ docker/.env
 # ── OS ──
 .DS_Store
 Desktop.ini
+
+# ── Tests ──
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ── Streamlit ──
+.streamlit/
 
 # ── Freebuff IDE (do not commit) ──
 .freebuff/
